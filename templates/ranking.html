@@ -21,20 +21,21 @@
     }
     h1, h2, h3, p {
       margin-bottom: 4px;
-      color: #ff69b4;
+      color: grey;
     }
     h3 {
       margin-top: 12px
     }
     p, li {
-      color: #a5e8d8;
+      color: tomato;
       font-family: "Lora";
     }
     a {
       color: white;
     }
     h3, .stars {
-      color: #cfe2f3;
+      color: purple;
+      font-weight: bolder;
     }
     .thumbnail {
       height: 16px;
@@ -59,6 +60,7 @@
 
   <script>
     var cmsAPI = 'https://1g93gddjva.execute-api.eu-west-1.amazonaws.com/dev/'
+    //cmsAPI the content is also on the file cms.json
     var app = new Vue({
       el: '#app',
       delimiters: ['${', '}'],
