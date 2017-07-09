@@ -50,8 +50,8 @@
     <div id="app">
       <ol>
         <li v-for="cms in cmss">
-          {{ cms[0] }}</a> 
-            <span class="stars"> &#9734; {{ starFormat(cms[1]) }}</span>
+          ${ cms[0] }</a> 
+            <span class="stars"> &#9734; ${ starFormat(cms[1]) }</span>
         </li>
       </ol>
     </div>
@@ -61,6 +61,7 @@
     var cmsAPI = 'https://1g93gddjva.execute-api.eu-west-1.amazonaws.com/dev/'
     var app = new Vue({
       el: '#app',
+      delimiters: ['${', '}'],
       data: {
         cmss: [['loading...', 0]]
       },
