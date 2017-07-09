@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Top CMSs on Github</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-resource@1.0.3/dist/vue-resource.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Lora" rel="stylesheet">
+  <style>
+    body {
+      font-family: "Playfair Display";
+      font-size: 19px;
+      line-height: 29px;
+      font-weight: 400
+    }
+    .container {
+      padding: 40px;
+      background-color: #100927ff;
+      max-width: 100%;
+      width: 100%
+    }
+    h1, h2, h3, p {
+      margin-bottom: 4px;
+      color: #ff69b4;
+    }
+    h3 {
+      margin-top: 12px
+    }
+    p, li {
+      color: #a5e8d8;
+      font-family: "Lora";
+    }
+    a {
+      color: white;
+    }
+    h3, .stars {
+      color: #cfe2f3;
+    }
+    .thumbnail {
+      height: 16px;
+      margin-right: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Top CMSs on Github</h1>
+    
+    <div id="app">
+      <ol>
+        <li v-for="cms in cmss">
+          {{ cms[0] }}</a> 
+            <span class="stars"> &#9734; {{ starFormat(cms[1]) }}</span>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <script>
+    var cmsAPI = 'https://1g93gddjva.execute-api.eu-west-1.amazonaws.com/dev/'
+    var app = new Vue({
+      el: '#app',
+      data: {
+        cmss: [['loading...', 0]]
+      },
+      methods: {
+        starFormat: function (star) {
+          if (star == 1) {
+            return "1 star"
+          } else {
+            return star + " stars"
+          }
+        }
+      },
+      created: function () {
+        this.$http.get(cmsAPI)
+          .then( function(response) { 
+            this.cmss = response.body.cmss;
+          })
+        }
+    })
+  </script>
+</body>
+</html>
